@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Howl } from 'howler';
 import Desktop from '../components/Desktop';
+import LoadingBar from '../components/LoadingBar';
 
 const bootMessages = [
   "System Booting...",
@@ -67,18 +68,7 @@ export default function Home() {
                 Start Homework
               </motion.button>
             ) : (
-              <div className="space-y-4">
-                <div className="text-2xl mb-4">{currentMessage}</div>
-                <div className="w-64 h-4 border-2 border-green-500">
-                  <motion.div
-                    className="h-full bg-green-500"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${bootProgress}%` }}
-                    transition={{ duration: 0.1 }}
-                  />
-                </div>
-                <div className="text-sm">{bootProgress}%</div>
-              </div>
+              <LoadingBar progress={bootProgress} message={currentMessage} />
             )}
           </motion.div>
         ) : (
